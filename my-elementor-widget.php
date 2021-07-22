@@ -121,7 +121,7 @@ final class MY_Elementor_Widget {
         require_once MYEW_PLUGIN_PATH . '/widgets/preview-card.php';
         require_once MYEW_PLUGIN_PATH . '/widgets/pricing-table.php';
         require_once MYEW_PLUGIN_PATH . '/widgets/logo-carousel.php';
-        require_once MYEW_PLUGIN_PATH . '/widgets/project-references.php';
+//        require_once MYEW_PLUGIN_PATH . '/widgets/project-references.php';
     }
 
     /**
@@ -187,7 +187,7 @@ final class MY_Elementor_Widget {
 
         printf( '<div class="notice notice-warning is-dimissible"><p>%1$s</p></div>', $message );
     }
-    
+
 
 }
 
