@@ -82,7 +82,7 @@ class MYEW_Project_References_Widget extends Widget_Base {
                     'placeholder' => __( 'Type your title here', 'plugin-domain' ),
                 ]
             );
-            
+
              // Show URL
              $this->add_control(
                 'show_url_link',
@@ -95,7 +95,7 @@ class MYEW_Project_References_Widget extends Widget_Base {
                     'default' => 'yes',
                 ]
             );
-            
+
             // Website URL of Project/Client
             $this->add_control(
                 'website_url_of_projectclient',
@@ -153,7 +153,57 @@ class MYEW_Project_References_Widget extends Widget_Base {
                 ]
             );
 
-        $this->end_controls_section();
+//        $this->end_controls_section();
+
+       $this->add_control(
+          'show_elements',
+          [
+             'label' => __( 'Show Elements', 'plugin-domain' ),
+             'type' => \Elementor\Controls_Manager::SELECT2,
+             'multiple' => true,
+             'options' => [
+                'title'  => __( 'Title', 'plugin-domain' ),
+                'description' => __( 'Description', 'plugin-domain' ),
+                'button' => __( 'Button', 'plugin-domain' ),
+             ],
+             'default' => [ 'title', 'description' ],
+          ]
+       );
+
+       $this->add_control(
+          'entrance_animation',
+          [
+             'label' => __( 'Entrance Animation', 'plugin-domain' ),
+             'type' => \Elementor\Controls_Manager::ANIMATION,
+             'prefix_class' => 'animated ',
+          ]
+       );
+
+       $this->add_control(
+          'text_align',
+          [
+             'label' => __( 'Alignment', 'plugin-domain' ),
+             'type' => \Elementor\Controls_Manager::CHOOSE,
+             'options' => [
+                'left' => [
+                   'title' => __( 'Left', 'plugin-domain' ),
+                   'icon' => 'fa fa-align-left',
+                ],
+                'center' => [
+                   'title' => __( 'Center', 'plugin-domain' ),
+                   'icon' => 'fa fa-align-center',
+                ],
+                'right' => [
+                   'title' => __( 'Right', 'plugin-domain' ),
+                   'icon' => 'fa fa-align-right',
+                ],
+             ],
+             'default' => 'center',
+             'toggle' => true,
+          ]
+       );
+
+       $this->end_controls_section();
 
 
         // Style Tab
@@ -660,7 +710,7 @@ class MYEW_Project_References_Widget extends Widget_Base {
                             ],
                         ]
                     );
-                   
+
                     // Text Color
                     $this->add_control(
                         'but_button_hover_text_color',
@@ -718,7 +768,7 @@ class MYEW_Project_References_Widget extends Widget_Base {
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-bc8eb4b elementor-widget elementor-widget-text-editor" data-id="bc8eb4b" data-element_type="widget" data-widget_type="text-editor.default">
-                            <div class="elementor-widget-container">                               
+                            <div class="elementor-widget-container">
                                 <a href="<?php echo esc_url( $settings[ 'website_url_of_projectclient' ][ 'url' ] ) ?>"  <?php echo $image_target; ?> <?php echo $image_nofollow; ?> ><i class="eicon-link"></i><?php echo $settings[ 'client_company_name' ]; ?></a>
                             </div>
                         </div>
@@ -730,7 +780,8 @@ class MYEW_Project_References_Widget extends Widget_Base {
                         <div class="elementor-element elementor-element-86db25f elementor-widget elementor-widget-image"
                             data-id="86db25f" data-element_type="widget" data-widget_type="image.default">
                             <div class="elementor-widget-container">
-                                <img src="<?php echo esc_url( $settings[ 'client_company_logo' ][ 'url' ] ); ?>" class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" width="150" height="150">
+                                <a href="<?php echo esc_url( $settings[ 'website_url_of_projectclient' ][ 'url' ] ) ?>"  <?php echo $image_target; ?> <?php echo $image_nofollow; ?> >
+                                    <img src="<?php echo esc_url( $settings[ 'client_company_logo' ][ 'url' ] ); ?>" class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" width="150" height="150"></a>
                             </div>
                         </div>
                     </div>
@@ -745,7 +796,10 @@ class MYEW_Project_References_Widget extends Widget_Base {
                     <div class="elementor-widget-wrap elementor-element-populated">
                         <div class="elementor-element elementor-element-94e7657 elementor-widget elementor-widget-image"
                             data-id="94e7657" data-element_type="widget" data-widget_type="image.default">
-                            <div class="elementor-widget-container"><img src="<?php echo esc_url( $settings[ 'screenshot_of_project' ][ 'url' ] ); ?>" title="" alt="">
+                            <div class="elementor-widget-container">
+                                <a href="<?php echo esc_url( $settings[ 'website_url_of_projectclient' ][ 'url' ] ) ?>"  <?php echo $image_target; ?> <?php echo $image_nofollow; ?> >
+                                    <img src="<?php echo esc_url( $settings[ 'screenshot_of_project' ][ 'url' ] ); ?>" title="" alt="">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -768,11 +822,11 @@ class MYEW_Project_References_Widget extends Widget_Base {
 
     protected function _content_template() {
         ?>
-<#  var image_target=settings.website_url_of_projectclient.is_external ? ' target="_blank"' : '' ; 
-    var image_nofollow=settings.website_url_of_projectclient.nofollow ? ' rel="nofollow"' : '' ; 
+<#  var image_target=settings.website_url_of_projectclient.is_external ? ' target="_blank"' : '' ;
+    var image_nofollow=settings.website_url_of_projectclient.nofollow ? ' rel="nofollow"' : '' ;
     view.addInlineEditingAttributes( 'client_company_name' , 'none' );
-    view.addInlineEditingAttributes( 'description_of_project' , 'none' ); 
-    view.addInlineEditingAttributes( 'website_url_of_projectclient' , 'none' ); 
+    view.addInlineEditingAttributes( 'description_of_project' , 'none' );
+    view.addInlineEditingAttributes( 'website_url_of_projectclient' , 'none' );
     #>
     <div class="elementor-widget-wrap elementor-element-populated">
         <section
@@ -789,7 +843,7 @@ class MYEW_Project_References_Widget extends Widget_Base {
                             </div>
                         </div>
                         <div class="elementor-element elementor-element-bc8eb4b elementor-widget elementor-widget-text-editor" data-id="bc8eb4b" data-element_type="widget" data-widget_type="text-editor.default">
-                            <div class="elementor-widget-container">    
+                            <div class="elementor-widget-container">
                             <# if( 'yes' === settings.show_url_link ) { #>
                                 <a href="{{ settings.website_url_of_projectclient.url }}" {{ image_target }} {{ image_nofollow }} {{{ view.getRenderAttributeString( 'client_company_name' ) }}}><i class="eicon-link"></i>{{{ settings.client_company_name }}}</a>
                             <# } #>
